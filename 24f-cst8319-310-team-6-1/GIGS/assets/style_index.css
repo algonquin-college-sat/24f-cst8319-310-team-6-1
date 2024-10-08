@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
+
+*{
+    font-family:'Quicksand', sans-serif;
+}
+body{
+    margin: 0;
+    font-family:'Quicksand', sans-serif;
+}
+
+.main_login{
+    width: 100vw;
+    height: 100vh;
+    display: flex;   
+    justify-content: center;
+    align-items: center; 
+}
+
+.left_login{
+    width: 50vw;
+    height: 100vh;
+    font-size: 21px;
+    margin-left: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.left_login > h1 {
+    color:#084D6A;    
+}
+
+.right_login{
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card_login{
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px 35px;
+    background: #084D6A;
+    border-radius: 20px;
+    box-shadow: 0px 10px 40px #48BEC5;
+}
+
+.card_login > h1{
+    color:#F0F1B7;
+    font-weight: 800;
+    font-size: 80px;
+    margin: 0;
+}
+
+.textfield{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 10px 0px;
+}
+
+.textfield > input{
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    background: #F0F1B7;
+    color: #084D6A;
+    font-size: 12pt;
+    box-shadow: 0px 10px 40px #48BEC5;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.textfield > label{
+    color:#48BEC5;
+    margin-top: 10px;
+}
+.text_create{
+    font-weight: 800;
+    font-size: 15px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.text_create > a{
+    color:#F0F1B7;
+    font-weight: 800;
+    font-size: 15px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.text_create > a:hover {
+    color: #48BEC5;
+    font-weight: bold;
+}
+
+.button_login{
+    width: 50%;
+    padding: 10px 0px;
+    margin: 25px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: 20px;
+    background-color: #48BEC5;
+    color: #084D6A;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0px 10px 40px -12px #48BEC5;
+    text-decoration: none;
+}
+
+.button_login:hover {
+    background-color: #97D779;
+    color: #084D6A;
+}
+
+a:link{
+    text-decoration: none;
+}
+
+
+
+

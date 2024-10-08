@@ -1,0 +1,50 @@
+/*
+    PROJECT COLORS:
+    #084D6A - DARK BLUE
+    #48BEC5 - LIGHT BLUE
+    #F0F1B7 - BEIGE
+    #97D779 - GREEN
+*/
+
+.containerform {
+    width: 30%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f1f1f1;
+    border: 1px solid #ccc;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 10px;
+}
+
+input[type="text"]
+textarea {
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.submit, .reset{
+    border-radius: 5px;
+    padding: 3px 12px;
+    font-weight: 400;
+    font-size: 18px;
+    border: none;
+    background-color: #084D6A;
+    color: #97D779;
+    cursor: pointer;
+}
+
+.submit:hover, .reset:hover{
+    background-color: #97D779;
+    color: #084D6A;
+}

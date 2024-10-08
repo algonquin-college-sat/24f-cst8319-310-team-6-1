@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
+/* PROJECT COLORS
+    DARK BLUE
+    #084D6A 
+
+    LIGHT BLUE
+    #48BEC5
+
+    BEIGE
+    #F0F1B7
+
+    GREEN
+    #97D779
+*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family:'Quicksand', sans-serif;
+}
+
+body{
+    display: grid;
+    height: 100%;
+    place-items: center;
+    text-align: center;
+    background: white;
+}
+
+h1{
+    margin-top: 150px;
+    color: #084D6A;
+    font-size: 60px;
+}
+
+.rateContainer{
+    position: relative;
+    width: 400px;
+    background: #222;
+    padding: 20px 30px;
+    border: 1px solid #555;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.rateContainer .feedback{
+    display: none;
+}
+
+.rateContainer .text{
+    font-size: 25px;
+    color: #97D779;
+    font-weight: 500;
+}
+
+.rateContainer .edit{
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    font-size: 16px;
+    color: #666;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.rateContainer .edit:hover{
+    text-decoration: underline;
+}
+
+.rateContainer .star-widget input{
+    display: none;
+}
+
+.star-widget label{
+    font-size: 40px;
+    color: #444;
+    padding: 10px;
+    float: right;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+input:not(checked) ~ label:hover,
+input:not(checked) ~ label:hover ~ label{
+    color: #97D779;
+    text-shadow: 0 0 10px #82f14e;
+}
+
+input:checked ~ label {
+    color: #97D779;
+    text-shadow: 0 0 10px #82f14e;
+}
+
+input#rate-1:checked ~ label{
+    color: #f36141;
+    text-shadow: 0 0 10px #fb360a;
+}
+
+input#rate-2:checked ~ label{
+    color: #f36141;
+    text-shadow: 0 0 10px #fb360a;
+}
+
+input#rate-3:checked ~ label{
+    color: #48BEC5;
+    text-shadow: 0 0 10px #25ebf6;
+}
+
+input#rate-4:checked ~ label{
+    color: #48BEC5;
+    text-shadow: 0 0 10px #25ebf6;
+}
+
+input#rate-5:checked ~ label{
+    color: #F0F1B7;
+    text-shadow: 0 0 10px #ecef64;
+}
+
+#rate-1:checked ~ form header:before{
+    content: "It is not good";
+}
+
+#rate-2:checked ~ form header:before{
+    content: "It is not good";
+}
+
+#rate-3:checked ~ form header:before{
+    content: "Does the job";
+}
+
+#rate-4:checked ~ form header:before{
+    content: "It is very good";
+}
+
+#rate-5:checked ~ form header:before{
+    content: "Awesome!";
+}
+
+.rateContainer form{
+    display: none;
+}
+
+input:checked ~ form{
+    display: block;
+}
+
+form header{
+    width: 100%;
+    font-size: 25px;
+    color: #fe7;
+    font-weight: 500;
+    margin: 5px 0 20px 0;
+    text-align: center;
+    transition: all 0.2 ease;
+}
+
+form .textarea{
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+form .textarea textarea{
+    height: 100%;
+    width: 100%;
+    outline: none;
+    border: 1px solid #444;
+    background: #333;
+    color: #F0F1B7;
+    padding: 10px;
+    font-size: 17px;
+    resize: none;
+}
+
+form .btn{
+    height: 45px;
+    width: 100%;
+    margin: 15px 0;
+}
+
+form .btn button{
+    height: 100%;
+    width: 100%;
+    border: 1px solid #444;
+    outline: none;
+    background: #084D6A;
+    color: #48BEC5;
+    font-size: 17px;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+form .btn button:hover{
+    background: #48BEC5;
+    color: #084D6A;
+    font-weight: 700;
+    transition: 0.3s;
+}

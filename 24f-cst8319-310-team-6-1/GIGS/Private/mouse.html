@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        canvas {
+            border: 1px solid rgb(13, 23, 224);
+        }
+    </style>
+</head>
+<body>
+    <canvas id="myCanvas" width="500" height="500"></canvas>
+
+    <script>
+        // Get the canvas element
+        const canvas = document.getElementById("myCanvas");
+        const ctx = canvas.getContext("2d");
+
+        // Initialize circle position
+        let circleX = canvas.width / 2;
+        let circleY = canvas.height / 2;
+
+        // Function to draw the circle
+        function drawCircle(x, y) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.beginPath();
+            ctx.arc(x, y, 20, 0, 2 * Math.PI);
+            ctx.fillStyle = "blue";
+            ctx.fill();
+            ctx.closePath();
+        }
+
+        // Event listener for mouse movement
+        canvas.addEventListener("mousemove", (event) => {
+            circleX = event.clientX - canvas.getBoundingClientRect().left;
+            circleY = event.clientY - canvas.getBoundingClientRect().top;
+            drawCircle(circleX, circleY);
+        });
+
+        // Initial draw
+        drawCircle(circleX, circleY);
+    </script>
+</body>
+</html>

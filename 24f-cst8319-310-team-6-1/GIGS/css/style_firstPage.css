@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
+
+
+.main_firstPage{
+    font-family:'Quicksand', sans-serif;
+    width: 100vw;
+    height: 100vh;
+    margin-top: 2%;
+    display: flex;   
+    justify-content: center;
+    align-items: center; 
+    flex-direction: column;
+    color: #084D6A;
+    font-size: 23px;
+}
+/*for drawing the username in the first page account*
+*/
+.largetext{
+    font-family:'Quicksand', sans-serif;
+    
+    margin-top: 2%;
+   
+    color: #084D6A;
+    font-size: 100px;
+}
+
+.typewriter h1 {
+    color: #084D6A;
+    font-family: 'Quicksand', sans-serif;
+    overflow: hidden; 
+    border-right: .15em solid #084D6A; 
+    white-space: nowrap; 
+    margin: 0 auto; 
+    letter-spacing: .15em;
+    animation: 
+      typing 2s steps(30, end),
+      blink-caret .5s step-end infinite;
+  }
+  
+  /* The typing effect */
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+  /* The typewriter cursor effect */
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    30% { border-color: #97D779 }
+  }
+
+.card_empgig {
+    width: 30%;
+    display: flex;
+    justify-content: center;    
+    padding: 10px 10px;
+    background: #084D6A;
+    border-radius: 20px;
+    box-shadow: 0px 10px 40px #48BEC5;
+}
+
+.card_empgig:hover{    
+    background-color: #F0F1B7;
+}
+
+.card_empgig > a{
+    text-decoration: none;
+    color:#48BEC5;
+    font-size: 22px;
+}
+
+.card_empgig > a:hover{
+    color: #084D6A;
+}
+
+
+.wrapper div{    
+    font-size: 30px;
+    background: white;
+    color:#084D6A;
+    border-radius: 14px;
+    width: 90%;
+    margin-left: 10vh;
+    padding: 10px 50px;
+    font-weight:300;
+}
+
+
+.wrapper > div:hover{
+    background: #97D779;
+    transition: 0.3s;
+}
+
