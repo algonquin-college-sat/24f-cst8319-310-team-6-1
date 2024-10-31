@@ -185,7 +185,7 @@ if (isset($_GET['userName'])) {
             var from = "<?php echo $name; ?>";
             var toUser = "<?php echo $toUser; ?>";
             var start = 0;
-            var url = 'http://localhost/24w-cst8319-300-team5/newchat/TESTE/newchat/newchat.php';
+            var url = 'http://localhost/24wcst8319projectFinal/newchat/TESTE/newchat/newchat.php';
 
             loadMessages();
 
@@ -200,8 +200,11 @@ if (isset($_GET['userName'])) {
                     message: message,
                     from: from,
                     toUser: toUser
+                }).done(function() {
+                    $('#message').val('');
+                }).fail(function(jqXHR, textStatus, errorThrown) {
+                    console.error("Message send failed: ", textStatus, errorThrown);
                 });
-                $('#message').val('');
             }
 
             function loadMessages() {
@@ -215,7 +218,7 @@ if (isset($_GET['userName'])) {
                             scrollTop: $('#messages')[0].scrollHeight
                         });
                     }
-                    loadMessages(); // Recursive call to continuously load messages
+                    setTimeout(loadMessages, 2000); // Adjust the delay as needed (e.g., 2000ms or 2 seconds)
                 });
             }
 
