@@ -12,7 +12,12 @@ $toUser = isset($_POST['toUser']) ? $_POST['toUser'] : null;
 
 if(!empty($message) && !empty($from)) {
     $sql = "INSERT INTO `newchat` (`message`, `from`, `toUser`) VALUES ('" . $message . "', '" . $from . "', '" . $toUser . "')";
-    $result['send_status'] = $db->query($sql);
+    // $result['send_status'] = $db->query($sql);
+    if ($db->query($sql) === TRUE) {
+        $result['send_status'] = "Message sent successfully";
+    } else {
+        $result['send_status'] = "Error: " . $db->error;
+    }
 }
 
 //To print messages on screen
