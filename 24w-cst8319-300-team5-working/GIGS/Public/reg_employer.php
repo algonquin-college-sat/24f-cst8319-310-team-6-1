@@ -33,7 +33,7 @@ if (isset($_POST['insert'])) {
                 $token  = $_ENV["TWILIO_TOKEN"];
         $twilio = new Client($sid, $token);
 
-        $messageBody = "Thank you for signing up! Your registration is successful. Click here to access the website: http://192.168.2.123/24w-cst8319-300-team5-working/GIGS/Public/index.php. You are now signed in.";
+        $messageBody = "Thank you for signing up! Your registration is successful. Click here to access the website: http://192.168.2.123/24wcst8319projectFinal/GIGS/Public/index.php. You are now signed in.";
 
         $message = $twilio->messages
             ->create($phone, // to
@@ -187,7 +187,7 @@ if (isset($_POST['insert'])) {
         getClientIP(function(ip){
             const link = document.getElementById('linkWithIP');
             const serverIP = "<?php echo $_SERVER['SERVER_ADDR']; ?>";
-            const linkURL = "http://" + serverIP + "/24w-cst8319-300-team5-working/GIGS/Public/index.php?ip=" + ip;
+            const linkURL = "http://" + serverIP + "/24wcst8319projectFinal/GIGS/Public/index.php?ip=" + ip;
             link.href = linkURL;
         });
     </script>

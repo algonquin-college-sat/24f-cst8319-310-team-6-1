@@ -5,7 +5,7 @@ require_once 'connect-db.php'; // Adjust the path as necessary
 // Configuration - Replace these values with your own
 $clientId = '77rvgqtlpnpjvz'; // Your LinkedIn App Client ID
 $clientSecret = 'LKZY674IH7m4t10p'; // Your LinkedIn Client Secret
-$redirectUri = 'http://localhost/24w-cst8319-300-team5/GIGS/Public/linkedin_auth.php'; // Your Redirect URI
+$redirectUri = 'http://localhost/24wcst8319projectFinal/GIGS/Public/linkedin_auth.php'; // Your Redirect URI
 
 // LinkedIn OpenID Connect endpoints
 $authorizationEndpoint = 'https://www.linkedin.com/oauth/v2/authorization';
