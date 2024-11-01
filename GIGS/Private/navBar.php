@@ -2,6 +2,7 @@
 //session_start();
 require_once 'dbconnection.php';
 
+$hasNewMessages = false;
 if (isset($_SESSION['username'])) {
     $db = db_connect();
 
@@ -16,6 +17,12 @@ if (isset($_SESSION['username'])) {
     while ($row = $result->fetch_assoc()) {
         $senders[] = $row['from'];
     }
+
+    // Set flag if there are new messages
+    if (!empty($senders)) {
+        $hasNewMessages = true;
+    }
+
     $stmt->close();
 } else {
     $senders = [];
@@ -119,20 +126,21 @@ if (isset($_SESSION['username'])) {
                 <li><a href="../Public/contact.php">Contact</a></li>
                 
                 <?php if (isset($_SESSION['username'])) { ?>
-                    <li class="dropdown">
-                        <a href="javascript:void(0)">Message</a>
-                        <div class="dropdown-content">
-                            <?php if (!empty($senders)) { ?>
-                                <?php foreach ($senders as $sender) { ?>
-                                    <a href="../../newchat/indexchat.php?userName=<?php echo urlencode($sender); ?>" target="_blank">
-                                        <?php echo htmlspecialchars($sender); ?>
-                                    </a>
-                                <?php } ?>
-                            <?php } else { ?>
-                                <a href="#">No new messages</a>
+                    <!-- Message link with conditional styling for unseen messages -->
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="<?php echo $hasNewMessages ? 'new-message' : ''; ?>">Message</a>
+                    <div class="dropdown-content">
+                        <?php if (!empty($senders)) { ?>
+                            <?php foreach ($senders as $sender) { ?>
+                                <a href="../../newchat/indexchat.php?userName=<?php echo urlencode($sender); ?>" target="_blank">
+                                    <?php echo htmlspecialchars($sender); ?>
+                                </a>
                             <?php } ?>
-                        </div>
-                    </li>
+                        <?php } else { ?>
+                            <a href="#">No new messages</a>
+                        <?php } ?>
+                    </div>
+                </li>
                     <li><a href="../Private/displayprofile.php"><?php echo $_SESSION['username']; ?></a></li>
                     <li><a href="../Private/logout.php">Logout</a></li>
                 <?php } else { ?>
