@@ -11,7 +11,7 @@ session_start();
     <link rel="stylesheet" href="../css/style_firstPage.css"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap">
     <link rel="icon" href="../icon/Picture4.ico"/>
-    <script src="js/registration.js" defer ></script>
+    <script src="../js/registration.js" defer ></script>
     <title>About Us</title>
 
 </head>
