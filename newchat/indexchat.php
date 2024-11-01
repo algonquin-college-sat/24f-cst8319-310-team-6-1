@@ -219,7 +219,11 @@ if (isset($_GET['userName'])) {
                         });
                     }
                     // Mark messages as seen
-                    $.post('update_seen_status.php', { from: toUser, toUser: from });
+                    //$.post('update_seen_status.php', { from: toUser, toUser: from });
+                    // Only call update_seen_status.php when there are new messages
+                    $.post('update_seen_status.php', { from: toUser, toUser: from }, function(response) {
+                        console.log("Seen status update response:", response); // For debugging
+                    }, 'json');
                     setTimeout(loadMessages, 2000); // Adjust the delay as needed (e.g., 2000ms or 2 seconds)
                 });
             }
