@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="icon/Picture4.ico"/>
     <title></title>    
-    <link rel="stylesheet" type="text/css" href="css/navBar.css">
-    <link rel="stylesheet" type="text/css" href="css/footer.css">
+    <link rel="stylesheet" type="text/css" href="../css/navBar.css">
+    <link rel="stylesheet" type="text/css" href="../css/footer.css">
 
     <script src="js/navBar.js"></script>
 
