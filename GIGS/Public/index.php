@@ -10,7 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
     <script src="https://accounts.google.com/gsi/client" async defer></script>
     <link rel="icon" href="icon/Picture4.ico" />
-    <script src="js/registration.js" defer></script>
+    <script src="../js/registration.js" defer></script>
     <title>Welcome to GIGS!</title>
 
 </head>
@@ -46,7 +46,7 @@
 
                     <button class="button_login" type="submit">Sign In</button>
                     <a href="#" onclick="window.open('linkedin_auth.php', 'LinkedIn Login', 'width=800, height=600, left=200, top=100'); return false;" style="display: inline-block; background-color: #0077B5; color: white; padding: 10px 24px; border-radius: 4px; font-size: 16px; text-align: center; cursor: pointer; text-decoration: none; font-family: 'Quicksand', sans-serif; box-shadow: 0 2px 4px 0 rgba(0,0,0,.25);">
-                        <img src="http://localhost/24w-cst8319-300-team5/GIGS/icon/linkedinLogo.jpg" alt="LinkedIn Logo" style="vertical-align: middle; margin-right: 5px; width: 20px; height: 20px; filter: none;">Sign up with LinkedIn
+                        <img src="http://localhost/24wcst8319projectFinal/GIGS/icon/linkedinLogo.jpg" alt="LinkedIn Logo" style="vertical-align: middle; margin-right: 5px; width: 20px; height: 20px; filter: none;">Sign up with LinkedIn
                     </a>
                     <div id="signInDiv"></div>
                     <div class="text_create">
@@ -77,8 +77,10 @@
 
         function handleCredentialResponse(response) {
             var data = parseJwt(response.credential);
+            var email = data.email;
+            var name = data.name;
             // Redirect to reg_account.php with email and company_name (use username or name based on the ID token content)
-            window.location.href = `reg_account.php?email=${encodeURIComponent(data.email)}&company_name=${encodeURIComponent(data.name)}`;
+            window.location.href = `../Private/login_verify.php?email=${encodeURIComponent(email)}&name=${encodeURIComponent(name)}`;
         }
 
         // Helper function to parse JWT ID tokens

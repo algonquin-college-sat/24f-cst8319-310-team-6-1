@@ -93,7 +93,7 @@ if (isset($_SESSION['username'])) {
     <header>
         <nav> 
              <?php
-             $folder="/24w-cst8319-300-team5/GIGS/Public/"
+             $folder="/24wcst8319projectFinal/GIGS/Public/"
              ?>
               <?php // for displaying links if user is logged in*
                 

@@ -41,7 +41,7 @@ if (isset($_POST['insert'])) { //make sure we submit the data
         $token  = $_ENV["TWILIO_TOKEN"];
         $twilio = new Client($sid, $token);
 
-        $messageBody = "Thank you for signing up! Your registration is successful. Click here to access the website: http://192.168.2.123/24w-cst8319-300-team5-working/GIGS/Public/index.php. You are now signed in.";
+        $messageBody = "Thank you for signing up! Your registration is successful. Click here to access the website: http://192.168.2.123/24wcst8319projectFinal/GIGS/Public/index.php. You are now signed in.";
 
         $message = $twilio->messages
             ->create($phone, // to
