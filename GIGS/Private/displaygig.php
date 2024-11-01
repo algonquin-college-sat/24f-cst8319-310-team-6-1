@@ -43,13 +43,29 @@ else {
             color: #084D6A;
         }
 
-        .gig {
-            margin-bottom: 20px;
-            padding: 10px;
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            list-style-type: none;
-        }
+        /* Container for the gig cards */
+.gig-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Each individual gig card */
+.gig {
+    flex: 1 1 calc(33.333% - 20px); /* 3 cards per row */
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+    margin: 10px;
+}
+
+.gig:hover {
+    transform: translateY(-5px); /* Lift effect on hover */
+}
 
         .gig:nth-child(even) {
             background-color: #f1f1f1;
@@ -58,6 +74,7 @@ else {
         .gig h3 {
             margin: 0;
             font-size: 18px;
+            color: #084D6A;
         }
 
         .gig p {
@@ -82,14 +99,15 @@ else {
             align-items: flex-start;
             width: 200px; 
         }
-        .action-button {
+        /* Buttons within each gig card */
+.action-button, #chat, #review {
     border-radius: 5px;
-    padding: 3px 12px;
+    padding: 5px 10px;
     font-weight: 800;
-    font-size: 18px;
+    font-size: 14px;
     border: none;
-    background-color: #084D6A; /* Same color as other buttons */
-    color: #97D779; /* Text color */
+    background-color: #084D6A;
+    color: #97D779;
     cursor: pointer;
     margin-top: 10px;
 }
@@ -97,6 +115,18 @@ else {
 .action-button:hover {
     background-color: #48BEC5; /* Color on hover */
 }
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .gig {
+        flex: 1 1 calc(50% - 20px); /* 2 cards per row on tablets */
+    }
+}
+
+@media (max-width: 480px) {
+    .gig {
+        flex: 1 1 100%; /* Full width on mobile */
+    }
 
     </style>
 </head>
@@ -109,7 +139,7 @@ else {
      <a href="showgigstatus.php"><button id="showgig">Show Gig Work Status</button><br></a>
 </h1>
     <div class="container">
-
+    <div class="gig-container">
         <?php
             require_once('./dbconnection.php');
 
@@ -360,7 +390,7 @@ else {
             // Display the gigs
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
-                    echo '<li class="gig">';
+                    echo '<div class="gig">';
                     echo '<h3><a href="displayprofile.php?userName=' . $row['userName'].'">'. $row['userName'] . '</a></h3>';
                     echo '<p>Location: ' . $row['city'] . ', ' . $row['country'] . '</p>';
                     echo '<p>Phone: ' . $row['phone'] . '</p>';
@@ -372,7 +402,7 @@ else {
                     echo generateFeedbackButton($row['userName']);
                     echo generateViewReviewsButton($row['userName']);
                     //echo '<button class="delete-button" data-id="' . $row['id'] . '" target="_blank" id="delete">Delete</button>';
-                    echo '</li>';
+                    echo '</div>';
                 }
             } else {
                 echo "No gigs found.";
@@ -393,7 +423,7 @@ else {
             }
             echo '</div>';
             ?>
-           
+        </div>   
     </div>
     
 
