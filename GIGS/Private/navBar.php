@@ -1,4 +1,27 @@
-<?php //session_start(); ?>
+<?php
+//session_start();
+require_once 'dbconnection.php';
+
+if (isset($_SESSION['username'])) {
+    $db = db_connect();
+
+    // Fetch users who sent new messages to the logged-in user
+    $newMessagesQuery = "SELECT DISTINCT `from` FROM newchat WHERE `toUser` = ? AND seen = 0";
+    $stmt = $db->prepare($newMessagesQuery);
+    $stmt->bind_param("s", $_SESSION['username']);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    $senders = [];
+    while ($row = $result->fetch_assoc()) {
+        $senders[] = $row['from'];
+    }
+    $stmt->close();
+} else {
+    $senders = [];
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en" id="htmlTag">
 <head>
@@ -10,6 +33,52 @@
     <link rel="stylesheet" type="text/css" href="../css/navBar.css">
     <link rel="stylesheet" type="text/css" href="../css/footer.css">
     <script src="../js/navBar.js"></script>
+
+    <style>
+        /* Dropdown Menu Style */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #ddd;
+        }
+
+        /* Show the dropdown when hovering over .dropdown */
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        /* Style adjustments for the nav bar */
+        .nav-list {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            list-style: none;
+            padding: 0;
+        }
+
+        .nav-list li {
+            display: inline;
+        }
+    </style>
 
 </head>
 <body>
@@ -49,13 +118,26 @@
                 <li><a href="../Public/about.php">About</a></li>
                 <li><a href="../Public/contact.php">Contact</a></li>
                 
-                <?php // for displaying links if user is logged in*
-                //echo $_SESSION;
-                    if(isset($_SESSION['username']) && $_SESSION['username']) {
-                        echo '<li><a href="../Private/displayprofile.php">'.$_SESSION['username'].'</a></li>';
-                        echo '<li><a href="../Private/logout.php" >Logout</a></li>';
-                    } 
-                ?>
+                <?php if (isset($_SESSION['username'])) { ?>
+                    <li class="dropdown">
+                        <a href="javascript:void(0)">Message</a>
+                        <div class="dropdown-content">
+                            <?php if (!empty($senders)) { ?>
+                                <?php foreach ($senders as $sender) { ?>
+                                    <a href="../../newchat/indexchat.php?userName=<?php echo urlencode($sender); ?>" target="_blank">
+                                        <?php echo htmlspecialchars($sender); ?>
+                                    </a>
+                                <?php } ?>
+                            <?php } else { ?>
+                                <a href="#">No new messages</a>
+                            <?php } ?>
+                        </div>
+                    </li>
+                    <li><a href="../Private/displayprofile.php"><?php echo $_SESSION['username']; ?></a></li>
+                    <li><a href="../Private/logout.php">Logout</a></li>
+                <?php } else { ?>
+                    <li><a href="../Public/login.php">Login</a></li>
+                <?php } ?>
                 
             </ul>
             

@@ -218,6 +218,8 @@ if (isset($_GET['userName'])) {
                             scrollTop: $('#messages')[0].scrollHeight
                         });
                     }
+                    // Mark messages as seen
+                    $.post('update_seen_status.php', { from: toUser, toUser: from });
                     setTimeout(loadMessages, 2000); // Adjust the delay as needed (e.g., 2000ms or 2 seconds)
                 });
             }
