@@ -115,7 +115,7 @@ else {
     margin-top: 10px;
 }
 
-.action-button:hover {
+.action-button:hover, #chat:hover, #review:hover, #filter:hover, #reset:hover  {
     background-color: #48BEC5; /* Color on hover */
 }
 
@@ -453,7 +453,7 @@ else {
                 </div>
                 <br>
                 <button type="submit" id="filter" style="background-color: green; color: white; width: 200px">Filter</button>
-                <button type="submit" id="filter" style="margin: 0 0 0 4%">Reset</button>
+                <button type="submit" id="reset" style="margin: 0 0 0 4%">Reset</button>
             </form><br>
             </div>';
             

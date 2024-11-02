@@ -61,6 +61,9 @@ else {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s;
     margin: 10px;
+    max-width: 300px;
+    min-height: 400px;
+    align-self: center;
 }
 
 .gig:hover {
@@ -90,6 +93,7 @@ else {
             background-color: #084D6A;
             color: #97D779;
             cursor: pointer;
+            margin-top: 10px;
         }
 
         .filter-input {
@@ -113,8 +117,77 @@ else {
 }
 
 /* Hover effect for buttons */
-.action-button:hover, #chat:hover, #review:hover {
+.action-button:hover, #chat:hover, #review:hover, #filter:hover, #reset:hover {
     background-color: #48BEC5;
+}
+
+/* Styling for the filter form container */
+.form-container {
+    width: 90%;
+    max-width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff; /* White background to stand out from the rest */
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    border: 1px solid #ccc;
+}
+
+/* Styling for form labels */
+.form-container label {
+    font-family: 'Quicksand', sans-serif;
+    color: #084D6A; /* Dark Blue */
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Styling for form inputs and selects */
+.form-container .form-input,
+.form-container .form-select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    transition: border-color 0.3s;
+}
+
+.form-container .form-input:focus,
+.form-container .form-select:focus {
+    border-color: #48BEC5; /* Light Blue focus color */
+    outline: none;
+}
+
+/* Styling for form buttons */
+.form-container .button-container {
+    display: flex;
+    gap: 10px;
+}
+
+.form-container .form-button {
+    background-color: #084D6A; /* Dark Blue */
+    color: #ffffff;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-container .form-button:hover {
+    background-color: #48BEC5; /* Light Blue */
+}
+
+.form-container h4 {
+    text-align: center;
+    font-size: 18px;
+    color: #084D6A;
+    margin-bottom: 15px;
+    font-family: 'Quicksand', sans-serif;
 }
 
 /* Responsive design for smaller screens */
@@ -128,7 +201,6 @@ else {
     .gig {
         flex: 1 1 100%; /* Full width on mobile */
     }
-}
     </style>
 </head>
 <body>
@@ -172,8 +244,8 @@ else {
 
                 // Construct the filter conditions and values based on the submitted data
                 if (!empty($domainFilter)) {
-                    $filterConditions[] = "domain = ?";
-                    $filterValues[] = $domainFilter;
+                    $filterConditions[] = "domain LIKE ?";
+                    $filterValues[] = "%" . $domainFilter . "%";
                 }
 
                 if (!empty($countryFilter)) {
@@ -232,23 +304,61 @@ else {
 
             // Display the filter form
             echo '
+            <div class="form-container">
             <form method="GET" action="">
-                <!--<h4>Filter:</h4>-->
+                <h4>Filter Options:</h4>
                 <label for="domainFilter">Domain:</label><br>
-                <select id="domainFilter" name="domainFilter" style="width: 207px; height: 22px;" placeholder="Enter a domain">
-                    <option value="" ></option>
-                    <option value="Transportation">Transportation and delivery services</option>
-                    <option value="Construction">Construction</option>
-                    <option value="Restaurant">Restaurant</option>
-                    <option value="Rental">Rental Services</option>
-                    <option value="Consultant">Consultant</option>
-                    <option value="Bartender">Bartender</option>                    
-                    <option value="Other" >Other</option>
-                </select><br>
+                <select id="domainFilter" name="domainFilter" style="width: 295px; height: 22px;" placeholder="Enter a domain">
+                <option value=""></option>
+                <optgroup label="Transportation and delivery services">
+                    <option value="package">Package delivery driver</option>
+                    <option value="food">Food delivery driver</option>
+                    <option value="grocery">Grocery delivery driver</option>
+                    <option value="bicycle">Bicycle courier</option>
+                    <option value="ride">Ride-share driver</option>
+                </optgroup>
+                <optgroup label="Personal services">
+                    <option value="dog">Dog walker</option>
+                    <option value="Babysitter">Babysitter or nanny</option>
+                    <option value="home">Home health aide</option>
+                    <option value="tutor">Tutor</option>
+                    <option value="massage">Massage therapist</option>
+                    <option value="telehealth">Telehealth provider</option>
+                </optgroup>
+                <optgroup label="On-demand skilled work">
+                    <option value="photographer">Photographer</option>
+                    <option value="graphic">Graphic designer</option>
+                    <option value="content">Content writer or copywriter</option>
+                    <option value="web">Web developer</option>
+                    <option value="editor">Editor</option>
+                    <option value="consultant">Consultant</option>
+                    <option value="translator">Translator</option>
+                </optgroup>
+                <optgroup label="Home services">
+                    <option value="handyperson">Handyperson</option>
+                    <option value="mover">Mover</option>
+                    <option value="house">House sitter</option>
+                    <option value="housekeeper">Housekeeper</option>
+                    <option value="cook">Cook</option>
+                    <option value="lawn">Lawn care technician or landscaper</option>
+                </optgroup>
+                <optgroup label="Internet-based gigs">
+                    <option value="survey">Survey taker</option>
+                    <option value="transcriptionist">Transcriptionist</option>
+                    <option value="virtual">Virtual assistant</option>
+                    <option value="proofreader">Proofreader</option>
+                    <option value="customer">Customer service representative</option>
+                    <option value="data">Data entry clerk</option>
+                </optgroup>
+                <optgroup label="Other">
+                    <option value="Other">Other</option>
+                </optgroup>
+            </select><br>
+
                 <br>
                 <div class="form_content">
                 <label for="countryFilter">Country:</label><br>
-                <select id="countryFilter" name="countryFilter" style="width: 207px; height: 22px;"></select>
+                <select id="countryFilter" name="countryFilter" style="width: 295px; height: 22px;"></select>
 
                     <script>
                     // Fetch the country data from the API
@@ -280,33 +390,22 @@ else {
                     </script><br>
                 </div><br>
                 <label for="cityFilter">City:</label>
-                <input type="text" id="cityFilter" name="cityFilter" class="filter-input" style="height: 18px;" placeholder="Enter a city name">
+                <input type="text" id="cityFilter" name="cityFilter" class="filter-input" style="height: 18px; width: 288px" placeholder="Enter a city name">
                 <br>
-                <label for="availabilityFilter">Availability:</label><br>
-                <select id="availabilityFilter" name="availabilityFilter" style="width: 207px; height: 22px;">
-                        <option value="" >Enter an availability</option>                    
-                        <option value="all" >All Schedules</option>
-                        <option value="morning">Morning</option>
-                        <option value="evening">Evening</option>
-                        <option value="night">Night</option>
-                        <option value="overnight">Overnight</option>
-                        <option value="morning_evening" >Morning and Evening</option>
-                        <option value="morning_night" >Morning and Night</option>
-                        <option value="morning_overnight" >Morning and Overnight</option>
-                        <option value="evening_night" >Evening and Night</option>
-                        <option value="evening_overnight" >Evening and Overnight</option>
-                        <option value="night_overnight" >Night and Overnight</option>
-                        <option value="morning_evening_night" >Morning, Evening and Night</option>
-                        <option value="morning_evening_overnight" >Morning, Evening and Overnight</option>
-                        <option value="evening_night_overnight" >Evening, Night and Overnight</option>
-                        <option value="night_overnight_morning" >Night, Overnight and Morning</option>
-                    </select><br>
+                <label>Availability:</label>
+                <select id="availabilityFilter" name="availabilityFilter" style="width: 295px; height: 22px;">
+                        <option value="">Select Availability</option>                    
+                        <option value="part-time">Part-time</option>
+                        <option value="full-time">Full-time</option>
+                </select><br>
                 <br>
-                <label for="skillsFilter">Skill:</label>
-                <input type="text" id="skillsFilter" name="skills" class="filter-input" placeholder="Enter a skill">
-                <br>
-                <button type="submit" id="filter">Filter</button><br>
-            </form><br>';
+                <!--<label for="skillsFilter">Skill:</label>
+                <input type="text" id="skillsFilter" name="skills" class="filter-input" placeholder="Enter a skill" style="width: 288px">
+                <br>-->
+                <button type="submit" id="filter" style="background-color: green; color: white; width: 200px">Filter</button>
+                <button type="submit" id="reset" style="margin: 0 0 0 4%">Reset</button>
+            </form><br>
+            </div>';
 
             // Display the gigs
             //Uses the result from sql to display employer information
