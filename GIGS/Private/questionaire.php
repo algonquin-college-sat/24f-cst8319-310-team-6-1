@@ -351,7 +351,11 @@ foreach ($domains as $category => $options) {
             <label for="experience">Experience:</label>
             <input type="text" id="experience" name="experience" value="<?php echo $row["experience"]; ?>" required>
             <label for="availability">Availability:</label>
-            <input type="text" id="availability" name="availability" value="<?php echo $row["availability"]; ?>" required>
+            <select id="availability" style="height: 30px;" name="availability" required>
+                <option value="full-time" <?php echo ($row["availability"] == "full-time") ? "selected" : ""; ?>>Full-time</option>
+                <option value="part-time" <?php echo ($row["availability"] == "part-time") ? "selected" : ""; ?>>Part-time</option>
+            </select><br>
+
             <label for="wage">Wage:</label>
             <input type="number" id="wage" name="wage" value="<?php echo $row["wage"]; ?>" required>
             

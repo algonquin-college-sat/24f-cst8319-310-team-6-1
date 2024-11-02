@@ -61,6 +61,9 @@ else {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     transition: transform 0.2s;
     margin: 10px;
+    max-width: 300px;
+    min-height: 400px;
+    align-self: center;
 }
 
 .gig:hover {
@@ -112,8 +115,77 @@ else {
     margin-top: 10px;
 }
 
-.action-button:hover {
+.action-button:hover, #chat:hover, #review:hover, #filter:hover, #reset:hover  {
     background-color: #48BEC5; /* Color on hover */
+}
+
+/* Styling for the filter form container */
+.form-container {
+    width: 90%;
+    max-width: 300px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff; /* White background to stand out from the rest */
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    border: 1px solid #ccc;
+}
+
+/* Styling for form labels */
+.form-container label {
+    font-family: 'Quicksand', sans-serif;
+    color: #084D6A; /* Dark Blue */
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Styling for form inputs and selects */
+.form-container .form-input,
+.form-container .form-select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    transition: border-color 0.3s;
+}
+
+.form-container .form-input:focus,
+.form-container .form-select:focus {
+    border-color: #48BEC5; /* Light Blue focus color */
+    outline: none;
+}
+
+/* Styling for form buttons */
+.form-container .button-container {
+    display: flex;
+    gap: 10px;
+}
+
+.form-container .form-button {
+    background-color: #084D6A; /* Dark Blue */
+    color: #ffffff;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.form-container .form-button:hover {
+    background-color: #48BEC5; /* Light Blue */
+}
+
+.form-container h4 {
+    text-align: center;
+    font-size: 18px;
+    color: #084D6A;
+    margin-bottom: 15px;
+    font-family: 'Quicksand', sans-serif;
 }
 
 /* Responsive design for smaller screens */
@@ -172,8 +244,9 @@ else {
 
                 // Construct the filter conditions and values based on the submitted data
                 if (!empty($domainFilter)) {
-                    $filterConditions[] = "domain = ?";
-                    $filterValues[] = $domainFilter;
+                    $filterConditions[] = "domain LIKE ?";
+                    $filterValues[] = "%" . $domainFilter . "%";
+
                 }
 
                 if (!empty($countryFilter)) {
@@ -192,8 +265,8 @@ else {
                 }                
 
                 if(!empty($skillsFilter)){
-                    $filterConditions[] = "skills = ?";
-                    $filterValues[] = $skillsFilter;
+                    $filterConditions[] = "skills LIKE ?";
+                    $filterValues[] = "%" . $skillsFilter . "%";
                 }
 
                 if (!empty($filterConditions)) {
@@ -259,10 +332,11 @@ else {
 
             // Display the filter form
             echo '
+            <div class="form-container">
             <form method="POST" action="">
-                <!--<h4>Filter:</h4>-->
-                <label for="domainFilter">Domain:</label><br>
-                <select id="domainFilter" name="domainFilter" style="width: 207px; height: 22px;" placeholder="Enter a domain">
+                <h4>Filter Options:</h4>
+                <label for="domainFilter">Domain:</label>
+                <select id="domainFilter" name="domainFilter" style="width: 295px; height: 22px;" placeholder="Enter a domain">
                 <option value=""></option>
                 <optgroup label="Transportation and delivery services">
                     <option value="package">Package delivery driver</option>
@@ -309,9 +383,9 @@ else {
                 </optgroup>
             </select><br>
                 <br>
-                <div class="form_content">
-                <label for="countryFilter">Country:</label><br>
-                <select id="countryFilter" name="countryFilter" style="width: 207px; height: 22px;"></select>
+                
+                <label for="countryFilter">Country:</label>
+                <select id="countryFilter" name="countryFilter" style="width: 295px; height: 22px;"></select>
 
                     <script>
                     // Fetch the country data from the API
@@ -341,52 +415,48 @@ else {
                         })
                         .catch(error => console.error("Error:", error));
                     </script><br>
-                </div><br>
-                <label for="cityFilter">City:</label>
-                <input type="text" id="cityFilter" name="cityFilter" class="filter-input" style="height: 18px;" placeholder="Enter a city name">
                 <br>
-                <label for="availabilityFilter">Availability:</label><br>
-                <select id="availabilityFilter" name="availabilityFilter" style="width: 207px; height: 22px;">
-                        <option value="" >Enter an availability</option>                    
-                        <option value="all" >All Schedules</option>
-                        <option value="morning">Morning</option>
-                        <option value="evening">Evening</option>
-                        <option value="night">Night</option>
-                        <option value="overnight">Overnight</option>
-                        <option value="morning_evening" >Morning and Evening</option>
-                        <option value="morning_night" >Morning and Night</option>
-                        <option value="morning_overnight" >Morning and Overnight</option>
-                        <option value="evening_night" >Evening and Night</option>
-                        <option value="evening_overnight" >Evening and Overnight</option>
-                        <option value="night_overnight" >Night and Overnight</option>
-                        <option value="morning_evening_night" >Morning, Evening and Night</option>
-                        <option value="morning_evening_overnight" >Morning, Evening and Overnight</option>
-                        <option value="evening_night_overnight" >Evening, Night and Overnight</option>
-                        <option value="night_overnight_morning" >Night, Overnight and Morning</option>
-                    </select><br>
+                <label for="cityFilter">City:</label>
+                <input type="text" id="cityFilter" name="cityFilter" class="filter-input" style="height: 18px; width: 288px" placeholder="Enter a city name">
+                <br>
+                <label>Availability:</label>
+                <select id="availabilityFilter" name="availabilityFilter" style="width: 295px; height: 22px;">
+                        <option value="">Select Availability</option>                    
+                        <option value="part-time">Part-time</option>
+                        <option value="full-time">Full-time</option>
+                </select>
+                
+                <br>
                 <br>
                 <label for="skillsFilter">Skill:</label>
-                <input type="text" id="skillsFilter" name="skills" class="filter-input" placeholder="Enter a skill">
+                <input type="text" id="skillsFilter" name="skills" class="filter-input" placeholder="Enter a skill" style="width: 288px">
                 <br>
-                <label for="sortingField">Sort by:</label>
-           <select id="sortingField" name="sortingField">
-    <option value="id">Default</option>
-    <option value="domain">Domain</option>
-    <option value="country">Country</option>
-    <option value="city">City</option>
-    <option value="availability">Availability</option>
-    <option value="skills">Skill</option>
-</select>
-
-<label for="sortingOrder">Sort order:</label>
-<select id="sortingOrder" name="sortingOrder">
-    <option value="DESC">Descending</option>
-    <option value="ASC">Ascending</option>
-</select>
-<br>
-                <button type="submit" id="filter">Filter</button><br>
-            </form><br>';
-
+                <div style="display: flex;">
+                    <div style="padding: 0 30% 0 0">
+                    <label for="sortingField">Sort by:</label>
+                    <select id="sortingField" name="sortingField">
+                        <option value="id">Default</option>
+                        <option value="domain">Domain</option>
+                        <option value="country">Country</option>
+                        <option value="city">City</option>
+                        <option value="availability">Availability</option>
+                        <option value="skills">Skill</option>
+                    </select>
+                    </div>
+                    <div>
+                    <label for="sortingOrder">Sort order:</label>
+                    <select id="sortingOrder" name="sortingOrder">
+                        <option value="DESC">Descending</option>
+                        <option value="ASC">Ascending</option>
+                    </select>
+                    </div>
+                </div>
+                <br>
+                <button type="submit" id="filter" style="background-color: green; color: white; width: 200px">Filter</button>
+                <button type="submit" id="reset" style="margin: 0 0 0 4%">Reset</button>
+            </form><br>
+            </div>';
+            
             // Display the gigs
             if ($result->num_rows > 0) {
                 while ($row = $result->fetch_assoc()) {
