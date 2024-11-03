@@ -3,8 +3,8 @@ session_start();
 require_once 'connect-db.php'; // Adjust the path as necessary
 
 // Configuration - Replace these values with your own
-$clientId = '77rvgqtlpnpjvz'; // Your LinkedIn App Client ID
-$clientSecret = 'LKZY674IH7m4t10p'; // Your LinkedIn Client Secret
+$clientId = '866lhoe5148v4j'; // Your LinkedIn App Client ID
+$clientSecret = 'WPL_AP1.liPLZPLXGWZyEiSJ.QZA6GQ=='; // Your LinkedIn Client Secret
 $redirectUri = 'http://localhost/24wcst8319projectFinal/GIGS/Public/linkedin_auth.php'; // Your Redirect URI
 
 // LinkedIn OpenID Connect endpoints
@@ -20,7 +20,8 @@ var state = Math.random().toString(36).substring(7); // Generate a simple state 
 sessionStorage.setItem("inState", state); // Store state in session storage for verification later
 
 var url = "{$authorizationEndpoint}?response_type=code&client_id={$clientId}&redirect_uri=" + encodeURIComponent("{$redirectUri}") + "&scope=" + encodeURIComponent("openid profile email") + "&state=" + state;
-window.open(url, "LinkedIn Login", "width=800, height=600, left=200, top=100");
+//window.open(url, "LinkedIn Login", "width=800, height=600, left=200, top=100");
+window.location.href = url;
 // window.location.href = "index.php"; // Redirect back to the main page or a specified location after opening LinkedIn login
 </script>
 HTML;
@@ -98,9 +99,25 @@ if (isset($_GET['code'])) {
 
     // Store email address in session
     $_SESSION['linkedin_email'] = $userInfo['email'];
-
+    $_SESSION['linkedin_name'] = $userInfo['name'];
+    
+     // JavaScript to send a message to the opener window and close the popup
+    // echo "<script>
+    //         if (window.opener) {
+    //             // Send a message to the original window to indicate successful login
+    //             window.opener.postMessage('linkedin-success', window.location.origin);
+    //             window.close(); // Close the popup
+                
+    //         } else {
+    //             // If not opened in a popup, redirect directly
+    //             window.location.href = 'reg_account.php?email=" . urlencode($userInfo['email']) . "';
+    //         }
+    //       </script>";
+    // exit;
+    //redirect in the original tab
+    
     // Redirect to reg_employer.php with email address as query parameter
-    header("Location: reg_account.php?email=" . urlencode($userInfo['email']));
+    header("Location: reg_account.php?email=" . urlencode($userInfo['email']) . "&company_name=" . urlencode($userInfo['name']));
     exit;
 
 } elseif (isset($_GET['error'])) {
