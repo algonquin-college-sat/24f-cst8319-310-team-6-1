@@ -103,8 +103,17 @@ if (isset($_GET['code'])) {
     
     
     // Redirect to reg_employer.php with email address as query parameter
-    header("Location: reg_account.php?email=" . urlencode($userInfo['email']) . "&company_name=" . urlencode($userInfo['name']));
-    exit;
+    //header("Location: reg_account.php?email=" . urlencode($userInfo['email']) . "&company_name=" . urlencode($userInfo['name']));
+    
+        // Output JavaScript to redirect to login_verify.php with email and name
+        echo "<script>
+        var email = " . json_encode($userInfo['email']) . ";
+        var name = " . json_encode($userInfo['name']) . ";
+        window.location.href = '../Private/login_verify.php?email=' + encodeURIComponent(email) + '&name=' + encodeURIComponent(name);
+    </script>";
+
+    
+    exit();
 
 } elseif (isset($_GET['error'])) {
     die('LinkedIn OAuth Error: ' . htmlspecialchars($_GET['error_description']));
