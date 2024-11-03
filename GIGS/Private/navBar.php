@@ -144,7 +144,7 @@ if (isset($_SESSION['username'])) {
                     <li><a href="../Private/displayprofile.php"><?php echo $_SESSION['username']; ?></a></li>
                     <li><a href="../Private/logout.php">Logout</a></li>
                 <?php } else { ?>
-                    <li><a href="../Public/login.php">Login</a></li>
+                    <li><a href="../Public/index.php">Login</a></li>
                 <?php } ?>
                 
             </ul>
