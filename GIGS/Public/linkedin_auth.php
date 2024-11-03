@@ -101,20 +101,6 @@ if (isset($_GET['code'])) {
     $_SESSION['linkedin_email'] = $userInfo['email'];
     $_SESSION['linkedin_name'] = $userInfo['name'];
     
-     // JavaScript to send a message to the opener window and close the popup
-    // echo "<script>
-    //         if (window.opener) {
-    //             // Send a message to the original window to indicate successful login
-    //             window.opener.postMessage('linkedin-success', window.location.origin);
-    //             window.close(); // Close the popup
-                
-    //         } else {
-    //             // If not opened in a popup, redirect directly
-    //             window.location.href = 'reg_account.php?email=" . urlencode($userInfo['email']) . "';
-    //         }
-    //       </script>";
-    // exit;
-    //redirect in the original tab
     
     // Redirect to reg_employer.php with email address as query parameter
     header("Location: reg_account.php?email=" . urlencode($userInfo['email']) . "&company_name=" . urlencode($userInfo['name']));
