@@ -108,7 +108,7 @@ if (isset($_POST['insert']) || isset($_POST['questionaire'])) {
                  // Example phone number
                 $messageBody = "http://".$ipAddress."/GIGS/Private/verification.php?username=$username&token=$verificationToken";
                 //$message = $twilio->messages->create($phone, [
-                    //"from" => "+17064683484",
+                    //"from" => "+14243321496",
                     //"body" => $messageBody
                // ]);
 
