@@ -192,16 +192,17 @@ if (isset($_GET['userName'])) {
             $('#messageForm').submit(function(e) {
                 e.preventDefault();
                 var message = $('#message').val();
+                if (message.trim() !== "") { // Check that the message is not empty
                 sendMessage(message);
+            }
             });
 
             function sendMessage(message) {
+                $('#message').val('');
                 $.post(url, {
                     message: message,
                     from: from,
                     toUser: toUser
-                }).done(function() {
-                    $('#message').val('');
                 }).fail(function(jqXHR, textStatus, errorThrown) {
                     console.error("Message send failed: ", textStatus, errorThrown);
                 });
